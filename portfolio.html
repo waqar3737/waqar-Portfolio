@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ana Reyes — Product Designer &amp; Frontend Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #101B14;
+    --surface: #16241B;
+    --surface-2: #1D2F23;
+    --line: #2A3F30;
+    --ink: #F1EDE3;
+    --ink-dim: #9FB0A3;
+    --accent: #E8A33D;
+    --accent-dim: #C98A2F;
+    --sage: #6F9782;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: rgba(16, 27, 20, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 68px;
+  }
+  .nav-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    font-size: 0.92rem;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-dim);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-toggle { display: none; }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 96px 0 88px;
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s ease-out 0.1s forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero { opacity: 1; transform: none; animation: none; }
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1.04;
+    max-width: 14ch;
+  }
+  .hero .role {
+    margin-top: 26px;
+    max-width: 46ch;
+    font-size: 1.15rem;
+    color: var(--ink-dim);
+  }
+  .hero-meta {
+    margin-top: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+  }
+  .hero-meta strong { color: var(--ink); display: block; font-weight: 500; }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 44px;
+  }
+  .section-head h2 { font-size: 1.8rem; }
+  .section-head .count { color: var(--ink-dim); font-size: 0.9rem; white-space: nowrap; }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+  }
+  .about-grid p { color: var(--ink-dim); max-width: 60ch; }
+  .about-grid p + p { margin-top: 18px; }
+  .about-facts { display: grid; gap: 20px; align-content: start; }
+  .fact { border-left: 2px solid var(--accent); padding-left: 16px; }
+  .fact .k { color: var(--ink-dim); font-size: 0.85rem; }
+  .fact .v { font-family: 'Fraunces', serif; font-size: 1.05rem; margin-top: 2px; }
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Work ---------- */
+  .work-list { display: grid; gap: 2px; background: var(--line); border: 1px solid var(--line); }
+  .work-item {
+    background: var(--bg);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 24px;
+    align-items: start;
+    text-decoration: none;
+    transition: background 0.25s ease;
+  }
+  .work-item:hover { background: var(--surface); }
+  .work-item .yr { color: var(--sage); font-size: 0.9rem; padding-top: 4px; }
+  .work-item h3 { font-size: 1.35rem; }
+  .work-item .desc { color: var(--ink-dim); margin-top: 8px; max-width: 55ch; font-size: 0.96rem; }
+  .work-item .tags { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .work-item .tags span { font-size: 0.78rem; color: var(--ink-dim); border: 1px solid var(--line); border-radius: 3px; padding: 3px 9px; }
+  .work-item .arrow { color: var(--accent); font-family: 'Fraunces', serif; font-size: 1.4rem; padding-top: 2px; }
+  @media (max-width: 640px) {
+    .work-item { grid-template-columns: 1fr; gap: 10px; }
+    .work-item .arrow { display: none; }
+  }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--line);
+  }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .tl-item .when { color: var(--ink-dim); font-size: 0.85rem; margin-bottom: 6px; }
+  .tl-item h3 { font-size: 1.15rem; font-weight: 500; }
+  .tl-item .org { color: var(--sage); font-size: 0.92rem; margin-top: 2px; }
+  .tl-item p { color: var(--ink-dim); margin-top: 10px; max-width: 58ch; font-size: 0.95rem; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 28px;
+  }
+  .skill-group .k { font-family: 'Fraunces', serif; font-size: 1.05rem; margin-bottom: 12px; }
+  .skill-group ul { list-style: none; color: var(--ink-dim); font-size: 0.92rem; display: grid; gap: 6px; }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: left; }
+  .contact h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    max-width: 16ch;
+    margin-bottom: 28px;
+  }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+  .contact-links a {
+    text-decoration: none;
+    border: 1px solid var(--line);
+    padding: 12px 20px;
+    border-radius: 3px;
+    font-size: 0.94rem;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-links a:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  footer {
+    padding: 32px 0 48px;
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-mark" href="#top">Ana Reyes</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Product design &amp; frontend engineering</div>
+    <h1>I build interfaces that feel like they were made by hand.</h1>
+    <p class="role">Placeholder bio — replace with your own. Example: "Eight years designing and shipping consumer products, currently focused on design systems and accessible motion at [Company]."</p>
+    <div class="hero-meta">
+      <div><strong>Based in</strong>Lahore, Pakistan</div>
+      <div><strong>Currently</strong>Senior Product Designer, Example Co.</div>
+      <div><strong>Open to</strong>Freelance &amp; full-time roles</div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p>Replace this paragraph with two or three sentences about who you are, what you care about in your work, and the kind of problems you like solving. Keep it specific — mention a discipline, an industry, or a tool rather than generic adjectives.</p>
+      <p>A second paragraph works well for a short personal note or how you got started, if it helps someone remember you after they close the tab.</p>
+    </div>
+    <div class="about-facts">
+      <div class="fact"><div class="k">Focus</div><div class="v">Design systems, interaction design</div></div>
+      <div class="fact"><div class="k">Tools</div><div class="v">Figma, React, TypeScript</div></div>
+      <div class="fact"><div class="k">Education</div><div class="v">B.S. Computer Science, Example University</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <div class="count">3 projects</div>
+    </div>
+    <div class="work-list">
+      <a class="work-item" href="#">
+        <div class="yr">2025</div>
+        <div>
+          <h3>Project One — Mobile checkout redesign</h3>
+          <div class="desc">One or two sentences on the problem, your role, and the outcome. Use a real number if you have one (e.g. "reduced drop-off by 18%").</div>
+          <div class="tags"><span>Product design</span><span>Research</span><span>iOS</span></div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="work-item" href="#">
+        <div class="yr">2024</div>
+        <div>
+          <h3>Project Two — Internal design system</h3>
+          <div class="desc">Description of the project, the constraints you worked within, and what shipped.</div>
+          <div class="tags"><span>Design systems</span><span>Frontend</span></div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a class="work-item" href="#">
+        <div class="yr">2023</div>
+        <div>
+          <h3>Project Three — Marketing site</h3>
+          <div class="desc">Description of the project, the constraints you worked within, and what shipped.</div>
+          <div class="tags"><span>Web</span><span>Brand</span></div>
+        </div>
+        <div class="arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="when">2023 — Present</div>
+        <h3>Senior Product Designer</h3>
+        <div class="org">Example Co.</div>
+        <p>One or two lines on your scope and a concrete contribution or two.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">2020 — 2023</div>
+        <h3>Product Designer</h3>
+        <div class="org">Previous Company</div>
+        <p>One or two lines on your scope and a concrete contribution or two.</p>
+      </div>
+      <div class="tl-item">
+        <div class="when">2018 — 2020</div>
+        <h3>Junior Designer</h3>
+        <div class="org">First Company</div>
+        <p>One or two lines on your scope and a concrete contribution or two.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="k">Design</div>
+        <ul><li>Interaction design</li><li>Design systems</li><li>User research</li><li>Prototyping</li></ul>
+      </div>
+      <div class="skill-group">
+        <div class="k">Engineering</div>
+        <ul><li>React / TypeScript</li><li>HTML &amp; CSS</li><li>Accessibility</li></ul>
+      </div>
+      <div class="skill-group">
+        <div class="k">Tools</div>
+        <ul><li>Figma</li><li>Git</li><li>Notion</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's work together.</h2>
+    <p style="color: var(--ink-dim); max-width: 50ch;">Replace with a short line inviting people to reach out — about freelance work, full-time roles, or just to talk shop.</p>
+    <div class="contact-links">
+      <a href="mailto:hello@example.com">hello@example.com</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Ana Reyes</span>
+    <span>Built with care.</span>
+  </div>
+</footer>
+
+</body>
+</html>
